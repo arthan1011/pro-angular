@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="todoApp">
 <head>
     <meta charset="UTF-8">
     <title>TO DO List</title>
-    <link href="bootstrap.css" rel="stylesheet" />
-    <link href="bootstrap-theme.css" rel="stylesheet" />
+
+    <script src="../angular.js"></script>
+    <script src="todoApp.js"></script>
+
+    <link href="../bootstrap.css" rel="stylesheet" />
+    <link href="../bootstrap-theme.css" rel="stylesheet" />
     <link href="custom.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-controller="ToDoCtrl">
     <div class="page-header">
-        <h1>My To DO list</h1>
+        <h1>
+            {{todo.user}}To DO list
+            <span class="label label-default">{{todo.items.length}}</span>
+        </h1>
     </div>
     <div class="panel">
         <div class="input-group">
@@ -26,10 +33,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Make Food</td><td>No</td></tr>
-                <tr><td>Eat Vegetables</td><td>No</td></tr>
-                <tr><td>Code AI</td><td>No</td></tr>
-                <tr><td>Clean Shoes</td><td>No</td></tr>
+                <tr ng-repeat="item in todo.items">
+                    <td>{{item.action}}</td>
+                    <td>{{item.done}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
