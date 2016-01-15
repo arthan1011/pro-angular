@@ -13,6 +13,18 @@ var model = {
 };
 
 var todoApp = angular.module("todoApp", []);
+todoApp.filter('checkedItems', function() {
+    return function (items, showCompleted) {
+        var resultArray = [];
+        angular.forEach(items, function(item) {
+            if (item.done == false || showCompleted == true) {
+                resultArray.push(item);
+            }
+        });
+        return resultArray;
+    }
+});
+
 todoApp.controller("ToDoCtrl", function($scope) {
     $scope.todo = model;
 

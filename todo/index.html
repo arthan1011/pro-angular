@@ -37,12 +37,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in todo.items | filter:{done: false} | orderBy:'action'">
+                <tr ng-repeat="item in todo.items | checkedItems:showCompleted | orderBy:'action'">
                     <td>{{item.action}}</td>
                     <td><input type="checkbox" ng-model="item.done"></td>
                 </tr>
             </tbody>
         </table>
+        <div class="checkbox-inline">
+            <label><input type="checkbox" ng-model="showCompleted"> Show Complete</label>
+        </div>
     </div>
 </body>
 </html>
