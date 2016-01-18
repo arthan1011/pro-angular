@@ -3,16 +3,17 @@
  */
 
 var model = {
-    user: 'Python',
-    items: [
-        {action: 'Make Food', done: false},
-        {action: 'Eat Vegetables', done: false},
-        {action: 'Code AI', done: true},
-        {action: 'Clean Shoes', done: false}
-    ]
+    user: 'Python'
 };
 
 var todoApp = angular.module("todoApp", []);
+
+todoApp.run(function($http) {
+    $http.get('todo.json').success(function(data) {
+        model.items = data;
+    })
+});
+
 todoApp.filter('checkedItems', function() {
     return function (items, showCompleted) {
         var resultArray = [];

@@ -1,0 +1,6 @@
+[
+  {"action": "Make Food", "done": false},
+  {"action": "Eat Vegetables", "done": false},
+  {"action": "Code AI", "done": true},
+  {"action": "Clean Shoes", "done": false}
+]
