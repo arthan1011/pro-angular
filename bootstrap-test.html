@@ -6,6 +6,11 @@
     <script src="angular.js"></script>
     <link href="bootstrap.css" rel="stylesheet" />
     <link href="bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        .gridrow > div {
+            border: 1px solid gray; padding: 10px; margin: 5px 0; background-color: lightgoldenrodyellow;
+        }
+    </style>
 </head>
 <body>
     <div class="well">
@@ -15,6 +20,30 @@
             <button class="btn btn-danger">Предупреждение</button>
         </div>
         <h3 class="panel-footer">Нижний колонтитул</h3>
+    </div>
+
+    <div class="panel">
+        <h4 class="panel-heading">Форма</h4>
+        <div class="panel-body">
+            <div class="form-group-lg">
+                <label for="first_name">First name</label>
+                <input class="form-control" type="text" id="first_name"/>
+            </div>
+            <div class="form-group-lg">
+                <label for="last_name">Last name</label>
+                <input class="form-control" type="text" id="last_name"/>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <h4 class="panel-heading">Rows</h4>
+        <div class="panel-body">
+            <div class="row gridrow">
+                <div class="col-lg-3">5</div>
+                <div class="col-lg-4">5</div>
+                <div class="col-lg-5">5</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
