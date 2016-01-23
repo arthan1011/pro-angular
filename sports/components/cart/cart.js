@@ -36,7 +36,7 @@ angular.module("cart", [])
             },
 
             getProducts: function() {
-                return angular.copy(cartData);
+                return cartData;
             }
         };
     })
