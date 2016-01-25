@@ -9,6 +9,7 @@
     <script src="controllers/productListControllers.js"></script>
     <script src="filters/customFilters.js"></script>
     <script src="components/cart/cart.js"></script>
+    <script src="ngmodules/angular-route.js"></script>
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="bootstrap-theme.css" />
     <link rel="stylesheet" href="custom.css" />
@@ -24,6 +25,6 @@
         <a href="/sports/app.html" class="alert-link">Click here to try again</a>
     </div>
 
-    <ng-include src="'views/productList.html'"></ng-include>
+    <ng-view />
 </body>
 </html>
