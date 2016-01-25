@@ -5,6 +5,14 @@
 angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
     .config(function($routeProvider) {
 
+        $routeProvider.when('/complete', {
+            templateUrl: '/sports/views/thankYou.html'
+        });
+
+        $routeProvider.when('/placeorder', {
+            templateUrl: '/sports/views/placeOrder.html'
+        });
+
         $routeProvider.when('/checkout', {
             templateUrl: '/sports/views/checkoutSummary.html'
         });
