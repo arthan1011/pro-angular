@@ -46,6 +46,70 @@
             </span>
         </div>
 
+        <h3>City</h3>
+        <div class="form-group">
+            <label for="cityInput">City</label>
+            <input class="form-control"
+                   name="city"
+                   id="cityInput"
+                   ng-model="data.shipping.city"
+                   required>
+            <span class="error"
+                  ng-show="shippingForm.city.$error.required">
+                Please enter a city
+            </span>
+        </div>
+
+        <h3>State</h3>
+        <div class="form-group">
+            <label for="stateInput">State</label>
+            <input class="form-control"
+                   name="state"
+                   id="stateInput"
+                   ng-model="data.shipping.state"
+                   required>
+            <span class="error"
+                  ng-show="shippingForm.state.$error.required">
+                Please enter a state
+            </span>
+        </div>
+
+        <h3>Zip</h3>
+        <div class="form-group">
+            <label for="zipInput">Zip</label>
+            <input class="form-control"
+                   name="zip"
+                   id="zipInput"
+                   ng-model="data.shipping.zip"
+                   required>
+            <span class="error"
+                  ng-show="shippingForm.zip.$error.required">
+                Please enter a zip code
+            </span>
+        </div>
+
+        <h3>Country</h3>
+        <div class="form-group">
+            <label for="countryInput">Country</label>
+            <input class="form-control"
+                   name="country"
+                   id="countryInput"
+                   ng-model="data.shipping.country"
+                   required>
+            <span class="error"
+                  ng-show="shippingForm.country.$error.required">
+                Please enter a country
+            </span>
+        </div>
+
+        <h3>Option</h3>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="giftwrap" ng-model="data.shipping.giftwrap" />
+                Gift wrap these items
+            </label>
+        </div>
+
         <div class="text-center">
             <button class="btn btn-primary"
                     ng-disabled="shippingForm.$invalid">
