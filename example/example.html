@@ -2,7 +2,7 @@
 <html lang="en" ng-app="exampleApp">
 <head>
     <meta charset="UTF-8">
-    <title>SportsStore</title>
+    <title>Example App</title>
     <script src="angular.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" href="bootstrap.css" />
@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="custom.css" />
 </head>
 <body class="container">
-    <div class="panel" ng-controller="dayCtrl">
+    <div class="panel">
         <div class="page-header">
             <h3>AngularJS App</h3>
         </div>
-        <h4>Today is {{day || '(unknown)'}}</h4>
+        <h4 ng-controller="dayCtrl">Today is {{day || '(unknown)'}}</h4>
+        <h4 ng-controller="tomorrowCtrl">Tomorrow is {{day || '(unknown)'}}</h4>
     </div>
 </body>
 </html>
