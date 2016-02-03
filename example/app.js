@@ -3,18 +3,24 @@
  */
 
 angular.module('exampleApp', [])
-    .controller('dayCtrl', function($scope) {
-        var dayNames = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday' ];
-        $scope.day = dayNames[(new Date).getDay()];
+    .controller('dayCtrl', function ($scope) {
+        $scope.day = (new Date).getDay();
     })
-    .controller('tomorrowCtrl', function($scope) {
-        var dayNames = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday' ];
-        $scope.day = dayNames[((new Date).getDay() + 1) % 7]
+    .controller('tomorrowCtrl', function ($scope) {
+        $scope.day = (new Date).getDay() + 1;
     })
-    .directive('highlight', function() {
+    .directive('highlight', function ($filter) {
+        var dayFilter = $filter('dayName');
+
         return function (scope, element, attrs) {
-            if (scope.day == attrs['highlight']) {
+            if (dayFilter(scope.day) == attrs['highlight']) {
                 element.css('color', 'red');
             }
+        }
+    })
+    .filter('dayName', function () {
+        var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday'];
+        return function (input) {
+            return angular.isNumber(input) ? dayNames[input] : input;
         }
     });
