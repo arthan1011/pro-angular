@@ -2,16 +2,22 @@
  * Created by ashamsiev on 01.02.2016.
  */
 
-angular.module('exampleApp', [])
-    .value('nowValue', new Date())
-    .controller('dayCtrl', function ($scope, days) {
-        //$scope.day = (new Date).getDay();
-        $scope.day = days.today;
-    })
-    .controller('tomorrowCtrl', function ($scope, days) {
-        //$scope.day = (new Date).getDay() + 1;
-        $scope.day = days.tomorrow;
-    })
+angular.module('exampleApp',
+    [
+        'exampleApp.Controllers',
+        'exampleApp.Filters',
+        'exampleApp.Directives',
+        'exampleApp.Services'
+    ])
+    .value('nowValue', new Date());
+
+angular.module('exampleApp.Services', [])
+    .service('days', function(nowValue) {
+        this.today = nowValue.getDay();
+        this.tomorrow = (this.today + 1) % 7;
+    });
+
+angular.module('exampleApp.Directives', [])
     .directive('highlight', function ($filter) {
         var dayFilter = $filter('dayName');
 
@@ -20,14 +26,4 @@ angular.module('exampleApp', [])
                 element.css('color', 'red');
             }
         }
-    })
-    .filter('dayName', function () {
-        var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday'];
-        return function (input) {
-            return angular.isNumber(input) ? dayNames[input] : input;
-        }
-    })
-    .service('days', function(nowValue) {
-        this.today = nowValue.getDay();
-        this.tomorrow = (this.today + 1) % 7;
     });
