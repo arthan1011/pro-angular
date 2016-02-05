@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Directives App</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="bootstrap-theme.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <script>
+        angular.module('exampleApp', [])
+                .controller('defaultCtrl', function($scope) {
+                    $scope.todos = [
+                        {"action": "Make Food", "complete": false},
+                        {"action": "Eat Vegetables", "complete": false},
+                        {"action": "Code AI", "complete": true},
+                        {"action": "Clean Shoes", "complete": false},
+                        {"action": "Call Family", "complete": false}
+                    ];
+                });
+    </script>
+</head>
+<body class="container">
+    <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+        <h3 class="panel-header">To DO List</h3>
+        <div class="well">
+            <div>First item is: {{todos[0].action}}</div>
+        </div>
+
+        <div class="well form-group-sm">
+            <label for="firstItem">Set first item</label>
+            <input type="text" id="firstItem" class="form-control" ng-model="todos[0].action">
+        </div>
+    </div>
+</body>
+</html>
