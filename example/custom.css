@@ -1,0 +1,11 @@
+tr.even {
+    background-color: lightsalmon;
+}
+
+tr.odd {
+    background-color: #40ff81;
+}
+
+td > *:first-child {
+    font-weight: bold;
+}

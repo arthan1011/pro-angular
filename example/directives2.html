@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Directives App</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="bootstrap-theme.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <script>
+        angular.module('exampleApp', [])
+                .controller('defaultCtrl', function($scope) {
+                    $scope.todos = [
+                        {"action": "Make Food", "complete": false},
+                        {"action": "Eat Vegetables", "complete": false},
+                        {"action": "Code AI", "complete": true},
+                        {"action": "Clean Shoes", "complete": false},
+                        {"action": "Call Family", "complete": false}
+                    ];
+                });
+    </script>
+</head>
+<body class="container">
+    <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+        <h3 class="panel-header">To DO List</h3>
+
+        <div class="checkbox well">
+            <label>
+                <input type="checkbox"
+                       ng-model="todos[2].complete"/>
+                Item 3 is <span ng-hide="todos[2].complete">in</span>complete
+            </label>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr><th>#</th><th>Action</th><th>Done</th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in todos" ng-class-even="'even'" ng-class-odd="'odd'">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.action}}</td>
+                    <td>
+                        <span ng-if="!item.complete">(Incomplete)</span>
+                        <span ng-if="item.complete">(Done)</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
