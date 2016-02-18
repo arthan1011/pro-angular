@@ -17,12 +17,32 @@
                         {"action": "Clean Shoes", "complete": false},
                         {"action": "Call Family", "complete": false}
                     ];
+
+                    $scope.buttonNames = ["Red", "Green", "Blue"];
+
+                    $scope.settings = {
+                        Rows: "Red",
+                        Columns: "Green"
+                    }
                 });
     </script>
 </head>
 <body class="container">
     <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
         <h3 class="panel-header">To DO List</h3>
+
+        <div class="row well">
+            <div class="col-xs-6" ng-repeat="(key, val) in settings">
+                <div class="radio" ng-repeat="button in buttonNames">
+                    <label>
+                        <input type="radio"
+                               ng-model="settings[key]"
+                               value="{{button}}"/>
+                        {{button}}
+                    </label>
+                </div>
+            </div>
+        </div>
 
         <div class="checkbox well">
             <label>
@@ -32,15 +52,15 @@
             </label>
         </div>
 
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr><th>#</th><th>Action</th><th>Done</th></tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in todos" ng-class-even="'even'" ng-class-odd="'odd'">
+                <tr ng-repeat="item in todos | filter: {complete: false}" ng-class="settings.Rows">
                     <td>{{$index + 1}}</td>
                     <td>{{item.action}}</td>
-                    <td>
+                    <td ng-style="{'background-color' : settings.Columns}">
                         <span ng-if="!item.complete">(Incomplete)</span>
                         <span ng-if="item.complete">(Done)</span>
                     </td>
