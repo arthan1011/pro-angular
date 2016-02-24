@@ -14,25 +14,11 @@
     <script>
         angular.module('exampleApp', [])
                 .controller('defaultCtrl', function ($scope) {
-                    $scope.todos = [
-                        {"action": "Make Food", "complete": false},
-                        {"action": "Eat Vegetables", "complete": false},
-                        {"action": "Code AI", "complete": true},
-                        {"action": "Clean Shoes", "complete": false},
-                        {"action": "Call Family", "complete": false}
-                    ];
+                    $scope.addUser = function(userDetails) {
+                        $scope.message = userDetails.name + " (" + userDetails.email + ") (" + userDetails.agreed + ")";
+                    };
 
-                    $scope.addNewItem = function (newItem) {
-
-                        if (angular.isDefined(newItem) &&
-                                angular.isDefined(newItem.action) &&
-                                angular.isDefined(newItem.location)) {
-                            $scope.todos.push({
-                                action: newItem.action + " (" + newItem.location + ")",
-                                complete: false
-                            })
-                        }
-                    }
+                    $scope.message = "Ready";
                 });
     </script>
 </head>
@@ -40,64 +26,50 @@
 <div id="todoPanel"
      class="panel"
      ng-controller="defaultCtrl">
-    <h3 class="panel-header">
-        To DO List
-            <span class="label label-info">
-                {{(todos | filter: {complete: false}).length}}
-            </span>
-    </h3>
-
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="well">
-                <div class="form-group row">
-                    <label for="actionText">Action:</label>
-                    <input id="actionText"
-                           type="text"
+    <form name="myForm" novalidate ng-submit="addUser(newUser)">
+        <div class="well">
+            <div class="form-group">
+                <label>
+                    Name:
+                    <input type="text"
+                           name="username"
                            class="form-control"
-                           ng-model="newTodo.action"/>
-                </div>
-                <div class="form-group row">
-                    <label for="actionLocation">Location:</label>
-                    <select name="actionLocation"
-                            id="actionLocation"
-                            class="form-control"
-                            ng-model="newTodo.location">
-                        <option>Home</option>
-                        <option>Office</option>
-                        <option>Mail</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary btn-block"
-                        ng-click="addNewItem(newTodo)">
-                    Add
-                </button>
+                           required
+                           ng-model="newUser.name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    Email:
+                    <input type="email"
+                           name="userEmail"
+                           class="form-control"
+                           required
+                           ng-model="newUser.email">
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="agreed"
+                           required
+                           ng-model="newUser.agreed">
+                    I agreed to the terms and conditions
+                </label>
+            </div>
+            <button type="submit"
+                    class="btn btn-primary btn-block"
+                    ng-disabled="myForm.$invalid">
+                OK
+            </button>
+        </div>
+        <div class="well">
+            Message: {{message}}
+            <div>
+                Valid: {{myForm.$valid}}
             </div>
         </div>
-    </div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Action</th>
-            <th>Done</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in todos"
-            ng-mouseenter="handleEvent($event)"
-            ng-mouseleave="handleEvent($event)"
-            ng-class="settings.Rows">
-            <td>{{$index + 1}}</td>
-            <td>{{item.action}}</td>
-            <td>
-                <input type="checkbox"
-                       ng-model="item.complete"/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    </form>
 </div>
 </body>
 </html>
