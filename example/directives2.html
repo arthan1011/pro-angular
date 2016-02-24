@@ -23,6 +23,11 @@
                     $scope.settings = {
                         Rows: "Red",
                         Columns: "Green"
+                    };
+
+                    $scope.handleEvent = function(e) {
+                        console.log("Event type: " + e.type);
+                        $scope.settings.Columns = e.type == 'mouseover' ? 'Green' : 'Blue';
                     }
                 });
     </script>
@@ -31,33 +36,23 @@
     <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
         <h3 class="panel-header">To DO List</h3>
 
-        <div class="row well">
-            <div class="col-xs-6" ng-repeat="(key, val) in settings">
-                <div class="radio" ng-repeat="button in buttonNames">
-                    <label>
-                        <input type="radio"
-                               ng-model="settings[key]"
-                               value="{{button}}"/>
-                        {{button}}
-                    </label>
-                </div>
-            </div>
+        <div class="well">
+            <span ng-repeat="button in buttonNames">
+                <button type="button" class="btn btn-info" ng-click="settings.Rows = button">
+                    {{button}}
+                </button>
+            </span>
         </div>
 
-        <div class="checkbox well">
-            <label>
-                <input type="checkbox"
-                       ng-model="todos[2].complete"/>
-                Item 3 is <span ng-hide="todos[2].complete">in</span>complete
-            </label>
-        </div>
-
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr><th>#</th><th>Action</th><th>Done</th></tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in todos | filter: {complete: false}" ng-class="settings.Rows">
+                <tr ng-repeat="item in todos"
+                    ng-mouseenter="handleEvent($event)"
+                    ng-mouseleave="handleEvent($event)"
+                    ng-class="settings.Rows">
                     <td>{{$index + 1}}</td>
                     <td>{{item.action}}</td>
                     <td ng-style="{'background-color' : settings.Columns}">
